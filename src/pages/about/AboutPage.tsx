@@ -1,8 +1,12 @@
 import React from 'react'
+import PageLayout from '../../components/layouts/PageLayout'
+import AboutContainer from '../../container/about/AboutContainer'
 
 const AboutPage = () => {
   return (
-    <div>AboutPage</div>
+    <PageLayout>
+      <AboutContainer />
+    </PageLayout>
   )
 }
 

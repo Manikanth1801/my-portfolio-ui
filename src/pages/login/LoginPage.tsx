@@ -1,15 +1,15 @@
 import React from 'react'
 import PageLayout from '../../components/layouts/PageLayout'
-import ContactContainer from '../../container/contact/ContactContainer'
+import LoginContainer from '../../container/login/LoginContainer'
 
-const ContactPage = () => {
+const LoginPage = () => {
   return (
     <>
     <PageLayout>
-      <ContactContainer />
+        <LoginContainer />
     </PageLayout>
     </>
   )
 }
 
-export default ContactPage
+export default LoginPage

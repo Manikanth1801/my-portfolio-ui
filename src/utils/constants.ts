@@ -3,12 +3,15 @@ import HomePage from "../pages/home/HomePage";
 import ContactPage from "../pages/contact/ContactPage";
 import AboutPage from "../pages/about/AboutPage";
 import ProjectPage from "../pages/projects/ProjectPage";
+import LoginPage from "../pages/login/LoginPage";
+import DetailBoard from "../pages/detailBoard/DetailBoard";
 
 export interface IRouteMaps {
     __id: string;
     name: string;
     URL: string;
-    element:() => JSX.Element
+    element:() => JSX.Element;
+    isProtected?: boolean;
 }
 
 
@@ -37,4 +40,17 @@ export const routeMap:IRouteMaps[] = [
         URL: '/projects',
         element: ProjectPage
     },
+    {
+        __id: '5',
+        name: 'Login',
+        URL: '/login',
+        element: LoginPage
+    },
+    {
+        __id: '6',
+    name: 'Detailboard',
+    URL: '/detailboard',
+    element: DetailBoard,
+    isProtected: true,
+    }
 ]
