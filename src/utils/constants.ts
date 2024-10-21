@@ -5,6 +5,8 @@ import AboutPage from "../pages/about/AboutPage";
 import ProjectPage from "../pages/projects/ProjectPage";
 import LoginPage from "../pages/login/LoginPage";
 import DetailBoard from "../pages/detailBoard/DetailBoard";
+import RegisterPage from "../pages/register/RegisterPage";
+import ProfilePage from "../pages/profile/ProfilePage";
 
 export interface IRouteMaps {
     __id: string;
@@ -48,9 +50,22 @@ export const routeMap:IRouteMaps[] = [
     },
     {
         __id: '6',
+        name: 'Register',
+        URL: '/register',
+        element: RegisterPage
+    },
+    {
+        __id: '7',
     name: 'Detailboard',
     URL: '/detailboard',
     element: DetailBoard,
+    isProtected: true,
+    },
+    {
+        __id: '8',
+    name: 'Profile',
+    URL: '/profile',
+    element: ProfilePage,
     isProtected: true,
     }
 ]

@@ -11,12 +11,11 @@ interface GlobalContextType  {
     count: number;
     setCount: Dispatch<SetStateAction<number>>
     user: User[]|[];
-    authToken: any;
-    // setAuthToken: Dispatch<SetStateAction<any>>
+    authToken: string | null;
+    setAuthTokenHandler: (token: string | null) => void;
     setUser: Dispatch<SetStateAction<User[]>>
     message: string;
     setMessage: Dispatch<SetStateAction<string>>
-    setAuthTokenHandler: (token: string | null) => void;
 }
 
 
@@ -45,34 +44,35 @@ const GlobalProvider:FC<GlobalProviderInterface>= ({children}) => {
 
     // chunk for the auth start 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        if (token) {
+      const token = localStorage.getItem('access_token');
+      if (token) {
           setAuthToken(token);
-        }
-      }, []);
+      }
+  }, []);
     
-      const setAuthTokenHandler = (token: string | null) => {
-        if (token) {
-          localStorage.setItem('authToken', token);
-        } else {
-          localStorage.removeItem('authToken');
-        }
-        setAuthToken(token);
-      };
+  const setAuthTokenHandler = (token: string | null) => {
+    if (token) {
+        localStorage.setItem('access_token', token);
+    } else {
+        localStorage.removeItem('access_token');
+    }
+    setAuthToken(token);
+};
     // ends here
 
     // Set up Axios interceptor
-  useEffect(() => {
-    axios.interceptors.request.use(
-      (config) => {
-        if (authToken) {
-          config.headers['Authorization'] = `Bearer ${authToken}`;
-        }
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
-  }, [authToken]);
+    useEffect(() => {
+      axios.interceptors.request.use(
+        (config) => {
+          if (authToken) {
+            config.headers['Authorization'] = authToken;  // Only use the token without "Bearer"
+          }
+          return config;
+        },
+        (error) => Promise.reject(error)
+      );
+    }, [authToken]);
+    
 
   return (
     <GlobalContext.Provider
